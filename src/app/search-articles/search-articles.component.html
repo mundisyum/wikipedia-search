@@ -1,0 +1,17 @@
+<!--<input type="text" #searchInput (keyup)="onKey(searchInput.value)">-->
+
+<form [formGroup]="searchForm">
+  <tui-input formControlName="searchString"
+             (keyup)="onKey(searchInput.value)"
+             #searchInput>
+    Type a search query string
+  </tui-input>
+</form>
+
+<ul>
+  <li *ngFor="let article of articles$ | async">
+    <a [routerLink]="['/articles/', article.title.split(' ').join('_')]">
+      {{ article.title }}
+    </a>
+  </li>
+</ul>

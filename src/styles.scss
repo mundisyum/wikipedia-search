@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  //padding-top: 65px;
+  color: #222;
+}
+
+a {
+  cursor: pointer;
+}
+
+.container {
+  padding: .5rem 1.25rem;
+}
