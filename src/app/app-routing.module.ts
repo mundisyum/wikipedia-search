@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { SearchArticlesComponent } from './search-articles/search-articles.component';
 import { ArticleDetailResolver } from './shared/resolvers/article-detail.resolver';
-import {AboutComponent} from "./about/about.component";
+import { AboutComponent } from "./about/about.component";
 
 const routes: Routes = [
   {
@@ -19,6 +19,10 @@ const routes: Routes = [
     resolve: {
       article: ArticleDetailResolver
     }
+  },
+  {
+    path: '**',
+    redirectTo: '',
   }
 ];
 

@@ -1,3 +1,12 @@
+tui-link {
+  background-color: hsla(0,0%,100%,.15);
+  transition: background-color;
+
+  &:hover {
+    background-color: hsla(0,0%,100%,.225);
+  }
+}
+
 .article {
   max-width: 500px;
 }

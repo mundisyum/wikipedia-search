@@ -1,12 +1,13 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { TuiRootModule } from "@taiga-ui/core";
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TuiRootModule } from "@taiga-ui/core";
 import { TuiInputModule } from '@taiga-ui/kit';
-import { CommonModule } from '@angular/common';
+import { TuiLinkModule } from '@taiga-ui/core';
 
 import { AppComponent } from './app.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
@@ -31,7 +32,8 @@ import { AboutComponent } from './about/about.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TuiRootModule,
-    TuiInputModule
+    TuiInputModule,
+    TuiLinkModule
   ],
   providers: [],
   bootstrap: [AppComponent]
