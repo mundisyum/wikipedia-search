@@ -1,12 +1,12 @@
 <a tuiLink routerLink="/" icon="tuiIconArrowLeft" iconAlign="left">Go back</a>
 
 <article class="article" *ngIf="(article$ | async) as article; else elseBlock">
-  <h2 class="shadow(2)">
+  <h2>
     {{ article.title }}
   </h2>
-  <div>
+  <p>
     {{ article.extract }}
-  </div>
+  </p>
 </article>
 <ng-template #elseBlock>
   Loading...
