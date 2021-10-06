@@ -1,17 +1,26 @@
-<!--<input type="text" #searchInput (keyup)="onKey(searchInput.value)">-->
-
 <form [formGroup]="searchForm">
-  <tui-input formControlName="searchString"
-             (keyup)="onKey(searchInput.value)"
-             #searchInput>
+  <h1>Search for it</h1>
+  <tui-input formControlName="searchString">
     Type a search query string
   </tui-input>
 </form>
 
-<ul>
-  <li *ngFor="let article of articles$ | async">
-    <a [routerLink]="['/articles/', article.title.split(' ').join('_')]">
-      {{ article.title }}
-    </a>
-  </li>
-</ul>
+<div class="results">
+  <h3>Clickable results:</h3>
+  <ng-container *ngIf="(wikipediaService.searchResult$ | async) as articles; else noResults">
+    <ul class="available-articles" *ngIf="articles.length > 0">
+      <li *ngFor="let article of articles">
+        <a [routerLink]="['/articles/', article.title.split(' ').join('_')]">
+          {{ article.title }}
+        </a>
+      </li>
+    </ul>
+    <div *ngIf="articles.length === 0">
+      No results for given query
+    </div>
+  </ng-container>
+
+  <ng-template #noResults>
+    No results yet
+  </ng-template>
+</div>

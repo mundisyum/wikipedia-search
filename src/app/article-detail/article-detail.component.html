@@ -1,11 +1,11 @@
-<div *ngIf="(article$ | async) as article; else elseBlock">
+<article class="article" *ngIf="(article$ | async) as article; else elseBlock">
   <h2>
     {{ article.title }}
   </h2>
   <div>
     {{ article.extract }}
   </div>
-</div>
+</article>
 <ng-template #elseBlock>
   Loading...
 </ng-template>

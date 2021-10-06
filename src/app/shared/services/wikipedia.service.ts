@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
-import {BehaviorSubject} from "rxjs";
+import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WikipediaService {
+  private readonly _searchQuery = new BehaviorSubject<string>('');
+  private readonly _searchResult = new BehaviorSubject<any[] | undefined | null>(null);
+  readonly searchQuery$ = this._searchQuery.asObservable();
+  readonly searchResult$ = this._searchResult.asObservable();
+
   constructor(private http: HttpClient) {
   }
 
   searchArticles(searchString: string) {
+    this._searchQuery.next(searchString);
+
     const params = new HttpParams()
       .set('action', 'query')
       .set('list', 'search')
@@ -18,8 +25,10 @@ export class WikipediaService {
       .set('format', 'json')
       .set('origin', '*')
 
-    return this.http.get<any>('https://en.wikipedia.org/w/api.php', {params})
-      .pipe(map((response: any) => response?.query?.search))
+    this.http.get<any>('https://en.wikipedia.org/w/api.php', {params}).pipe(
+      map((response: any) => response?.query?.search),
+      tap(search => this._searchResult.next(search))
+    ).subscribe()
   }
 
   getArticle(title: string) {
