@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WikipediaService } from '../shared/services/wikipedia.service';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  constructor(public wikipediaService: WikipediaService) {
+  }
 
   ngOnInit(): void {
   }

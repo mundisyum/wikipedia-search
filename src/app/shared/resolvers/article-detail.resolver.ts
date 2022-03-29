@@ -8,17 +8,18 @@ import { WikipediaService } from '../services/wikipedia.service';
   providedIn: 'root'
 })
 export class ArticleDetailResolver implements Resolve<any> {
-  constructor(private wikipediaService: WikipediaService) {}
+  constructor(private wikipediaService: WikipediaService) {
+  }
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<any>|Promise<any>|any {
+  ): Observable<any> | Promise<any> | any {
     const titleUrlParameter = route.paramMap.get('title');
     let title = '';
 
     if (titleUrlParameter !== null) {
-      title = titleUrlParameter.split(' ').join('_');
+      title = titleUrlParameter;
     }
 
     return this.wikipediaService.getArticle(title);

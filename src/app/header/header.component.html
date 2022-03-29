@@ -1,4 +1,5 @@
 <header class="header">
+  <mat-progress-bar *ngIf="wikipediaService.isLoading" mode="indeterminate"></mat-progress-bar>
   <div class="container">
     <div class="logo">
       <a routerLink="/">

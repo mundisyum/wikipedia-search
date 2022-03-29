@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-article-detail',
@@ -16,6 +16,7 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit(): void {
     this.article$ = this.route.data.pipe(
       map(data => {
+        console.log(data.article.query.pages)
         const article = Object.values(data.article.query.pages)[0];
 
         return article;

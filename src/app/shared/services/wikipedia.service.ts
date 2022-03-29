@@ -11,6 +11,7 @@ export class WikipediaService {
   private readonly _searchResult = new BehaviorSubject<any[] | undefined | null>(null);
   readonly searchQuery$ = this._searchQuery.asObservable();
   readonly searchResult$ = this._searchResult.asObservable();
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient) {
   }
@@ -32,6 +33,8 @@ export class WikipediaService {
   }
 
   getArticle(title: string) {
+    this.isLoading = true;
+
     const params = new HttpParams()
       .set('action', 'query')
       .set('titles', title)
@@ -41,6 +44,11 @@ export class WikipediaService {
       .set('format', 'json')
       .set('origin', '*')
 
-    return this.http.get<any>('https://en.wikipedia.org/w/api.php', {params})
+    return this.http.get<any>('https://en.wikipedia.org/w/api.php', {params}).pipe(
+      tap((data) => {
+        console.log(data);
+        this.isLoading = false;
+      })
+    )
   }
 }
