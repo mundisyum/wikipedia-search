@@ -17,15 +17,16 @@ export class SearchArticlesComponent implements OnInit, OnDestroy {
   })
 
   constructor(public wikipediaService: WikipediaService) {
+  }
+
+  ngOnInit() {
     this.formSubscription = this.wikipediaService.searchQuery$.pipe(
       take(1),
       tap(searchQuery => this.searchForm.patchValue({
         searchString: searchQuery
       }))
     ).subscribe()
-  }
 
-  ngOnInit() {
     this.searchForm.valueChanges.pipe(
       map(data => data.searchString),
       debounceTime(500),

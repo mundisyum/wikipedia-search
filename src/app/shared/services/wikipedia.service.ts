@@ -45,10 +45,7 @@ export class WikipediaService {
       .set('origin', '*')
 
     return this.http.get<any>('https://en.wikipedia.org/w/api.php', {params}).pipe(
-      tap((data) => {
-        console.log(data);
-        this.isLoading = false;
-      })
+      tap(() => this.isLoading = false)
     )
   }
 }
