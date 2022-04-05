@@ -10,13 +10,13 @@
   <ng-container *ngIf="(wikipediaService.searchResult$ | async) as articles; else noResults">
     <ul class="available-articles" *ngIf="articles.length > 0">
       <li *ngFor="let article of articles">
-        <a [routerLink]="['/articles/', article.title.split(' ').join('_')]">
+        <a [replaceUrl]="false" [routerLink]="['/articles/', article.title.split(' ').join('_')]">
           {{ article.title }}
         </a>
       </li>
     </ul>
     <div *ngIf="articles.length === 0">
-      No results for given query
+      No results for the given query
     </div>
   </ng-container>
 
