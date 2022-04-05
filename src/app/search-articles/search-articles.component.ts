@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter, map, mapTo, take, tap, withLatestFrom } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map, tap, withLatestFrom } from 'rxjs/operators';
 
 import { WikipediaService } from '../shared/services/wikipedia.service';
 import { ActivatedRoute, Router } from '@angular/router';

@@ -10,7 +10,7 @@
   <ng-container *ngIf="(wikipediaService.searchResult$ | async) as articles; else noResults">
     <ul class="available-articles" *ngIf="articles.length > 0">
       <li *ngFor="let article of articles">
-        <a [replaceUrl]="false" [routerLink]="['/articles/', article.title.split(' ').join('_')]">
+        <a [routerLink]="['/articles/', article.title.split(' ').join('_')]">
           {{ article.title }}
         </a>
       </li>

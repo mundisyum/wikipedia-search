@@ -10,7 +10,7 @@ export class WikipediaService {
   private readonly _searchResult = new BehaviorSubject<any[] | undefined | null>(null);
   readonly searchResult$ = this._searchResult.asObservable();
 
-  private readonly _latestQuery = new BehaviorSubject<string>('13');
+  private readonly _latestQuery = new BehaviorSubject<string>('');
   readonly latestQuery$ = this._latestQuery.asObservable();
 
   isLoading: boolean = false;
