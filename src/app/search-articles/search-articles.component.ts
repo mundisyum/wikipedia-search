@@ -30,6 +30,7 @@ export class SearchArticlesComponent implements OnInit {
         }
       }),
       withLatestFrom(this.wikipediaService.latestQuery$),
+      // if routerQuery is a new query
       filter(([routerQuery, latestQuery]) => routerQuery !== latestQuery),
       map(([query, _]) => query),
       debounceTime(250),
