@@ -7,18 +7,18 @@ import { BehaviorSubject } from "rxjs";
   providedIn: 'root'
 })
 export class WikipediaService {
-  private readonly _searchQuery = new BehaviorSubject<string>('');
   private readonly _searchResult = new BehaviorSubject<any[] | undefined | null>(null);
-  readonly searchQuery$ = this._searchQuery.asObservable();
   readonly searchResult$ = this._searchResult.asObservable();
+
+  private readonly _latestQuery = new BehaviorSubject<string>('');
+  readonly latestQuery$ = this._latestQuery.asObservable();
+
   isLoading: boolean = false;
 
   constructor(private http: HttpClient) {
   }
 
   searchArticles(searchString: string) {
-    this._searchQuery.next(searchString);
-
     const params = new HttpParams()
       .set('action', 'query')
       .set('list', 'search')
@@ -28,7 +28,10 @@ export class WikipediaService {
 
     this.http.get<any>('https://en.wikipedia.org/w/api.php', {params}).pipe(
       map((response: any) => response?.query?.search),
-      tap(search => this._searchResult.next(search))
+      tap(search => {
+        this._searchResult.next(search);
+        this._latestQuery.next(searchString);
+      })
     ).subscribe()
   }
 

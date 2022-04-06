@@ -1,4 +1,4 @@
-<a tuiLink routerLink="/" icon="tuiIconArrowLeft" iconAlign="left">Go back</a>
+<a tuiLink (click)="goBack()" icon="tuiIconArrowLeft" iconAlign="left">Go back</a>
 
 <article class="article" *ngIf="(article$ | async) as article; else elseBlock">
   <h2>

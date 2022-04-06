@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -11,12 +12,13 @@ import { map } from "rxjs/operators";
 export class ArticleDetailComponent implements OnInit {
   article$: Observable<any> | undefined;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private location: Location) {
+  }
 
   ngOnInit(): void {
     this.article$ = this.route.data.pipe(
       map(data => {
-        console.log(data.article.query.pages)
         const article = Object.values(data.article.query.pages)[0];
 
         return article;
@@ -24,4 +26,7 @@ export class ArticleDetailComponent implements OnInit {
     )
   }
 
+  goBack() {
+    this.location.back();
+  }
 }
